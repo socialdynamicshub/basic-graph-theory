@@ -2041,6 +2041,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   <!--/radix_placeholder_distill-->
   <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+  <script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+  <script src="site_libs/d3-4.5.0/d3.min.js"></script>
+  <script src="site_libs/forceNetwork-binding-0.4/forceNetwork.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2090,38 +2093,44 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
 <div class="d-article">
-<h2 id="talking-about-graphs">Talking about graphs</h2>
-<p>Before we go further into other types of graphs, let’s first build a basic vocabulary of how to talk about graphs. How can we quantify simple things about a graph to characterize certain aspects of it?</p>
+<p>Before we go further into other types of graphs, let’s first build a basic vocabulary of how to talk about graphs. How can we <strong>quantify</strong> simple things about a graph to characterize certain aspects of it?</p>
 <h3 id="network-size-and-density">Network size and density</h3>
-<p>A low-hanging fruit is to first describe the size of a graph. We can count how many vertices a graph has, this is called the <em>vertex count</em> or <em>node count</em>. Unsurprisingly, the number of edges is called the <em>edge count</em>.</p>
-<p>These two metrics seem inoccuously simple, but they give us everything we need to calculate an interesting metric that gives us a more meaningful way of characterizing a graph: it’s <em>density</em>.</p>
+<p>A low-hanging fruit is to first describe the <strong>size</strong> of a graph. We can count how many nodes and how many edges a graph has (<strong>node count</strong> and <strong>edge count</strong>).</p>
+<p>These two metrics seem inoccuously simple, but they give us everything we need to calculate an interesting metric that gives us a more meaningful way of characterizing a graph: its <em>density</em>.</p>
 <p>Look at these two graphs:</p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="talking-about-graphs_files/figure-html5/unnamed-chunk-1-1.png" width="624" /><img src="talking-about-graphs_files/figure-html5/unnamed-chunk-1-2.png" width="624" /></p>
+<div id="htmlwidget-5f4bd13adbd2ae123f53" style="width:624px;height:384px;" class="forceNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5f4bd13adbd2ae123f53">{"x":{"links":{"source":[7,0,9,10,7,6,9,7,10,12,11,3,9,10],"target":[8,12,12,12,13,1,2,3,3,3,4,4,5,5],"value":[1,1,1,1,1,1,1,1,1,1,1,1,1,1],"colour":["#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666"]},"nodes":{"name":["1","11","12","13","14","15","2","3","4","5","6","7","8","9"],"group":[1,1,1,1,1,1,1,1,1,1,1,1,1,1],"nodesize":[8,8,8,8,8,8,8,8,8,8,8,8,8,8]},"options":{"NodeID":"name","Group":"group","colourScale":"d3.scaleOrdinal(['blue'])","fontSize":7,"fontFamily":"serif","clickTextSize":17.5,"linkDistance":50,"linkWidth":"'1.5px'.toString()","charge":-100,"opacity":0.6,"zoom":false,"legend":false,"arrows":false,"nodesize":true,"radiusCalculation":"d.nodesize","bounded":false,"opacityNoHover":1,"clickAction":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-5c754b59ae0f69c0efe5" style="width:624px;height:384px;" class="forceNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5c754b59ae0f69c0efe5">{"x":{"links":{"source":[0,0,0,7,8,0,7,8,0,7,8,9,10,0,7,8,9,10,11,7,8,9,10,11,12,0,7,8,9,10,11,12,13,7,8,9,10,11,12,13,14,0,7,8,9,10,11,12,13,14,0,7,8,9,10,11,12,14,1,0,7,8,9,10,11,12,13,14,2,3,0,7,8,9,10,11,12,13,14,1,2,3,4,0,7,8,9,10,11,12,13,14,1,2,4,5],"target":[7,8,9,9,9,10,10,10,11,11,11,11,11,12,12,12,12,12,12,13,13,13,13,13,13,14,14,14,14,14,14,14,14,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,4,4,4,4,4,4,4,4,4,4,4,5,5,5,5,5,5,5,5,5,5,5,5,5,6,6,6,6,6,6,6,6,6,6,6,6,6],"value":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"colour":["#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666"]},"nodes":{"name":["1","10","11","12","13","14","15","2","3","4","5","6","7","8","9"],"group":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"nodesize":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,8]},"options":{"NodeID":"name","Group":"group","colourScale":"d3.scaleOrdinal(['blue'])","fontSize":7,"fontFamily":"serif","clickTextSize":17.5,"linkDistance":50,"linkWidth":"'1.5px'.toString()","charge":-100,"opacity":0.6,"zoom":false,"legend":false,"arrows":false,"nodesize":true,"radiusCalculation":"d.nodesize","bounded":false,"opacityNoHover":1,"clickAction":null}},"evals":[],"jsHooks":[]}</script>
 </div>
-<p>The difference between the two just hits you in the face right away. But there is a way to quantify it very easily.</p>
-<p>So, what is network density?</p>
-<p>In essence, it is the actual <em>edge count</em> divided by the <em>number of possible edges</em> in the graph.</p>
+<p>Despite the fact that they both have the same number of nodes, the difference between the two just hits you right between the eyes. The second one is obviously more <em>dense</em> than the first one.</p>
+<p>There is an easy way to quantify this. <strong>Network density</strong> is calculated by dividing the actual <em>edge count</em> by the <em>number of possible edges</em>, that is, the maximum number of edges possible in a graph with a given node count.</p>
 <p><span class="math display">\[
-density(G) = \frac{edges(G)}{{possibleedges}(G)}
+density(G) = \frac{edges(G)}{{edges_{max}}(G)}
 \]</span></p>
-<p>How many edges can a graph with a fixed node count <em>n</em> possibly have? Well, there would be an edge between any two nodes in the network. A graph like that is called a <em>complete graph</em>.</p>
-<p>The number of edges in a complete graph with n nodes is calculated as follows:</p>
+<p>The maximum number of edges would be present if there is an edge between each possible pair of nodes. A graph like that is called a <strong>complete graph</strong>.</p>
+<p>The number of edges in a complete graph with <span class="math inline">\(n\)</span> nodes is calculated as follows:</p>
 <p><span class="math display">\[
 \frac{n(n - 1)}{2}
 \]</span></p>
-<p>Task: Can you figure out why?</p>
-<p>Task: Calculate the network density of the following graph:</p>
+<h4 id="task">Task</h4>
+<p>Can you figure out why?</p>
+<h4 id="task-1">Task</h4>
+<p>Calculate the network density of the following graph:</p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="talking-about-graphs_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
+<div id="htmlwidget-9d0fb4494100822020d8" style="width:624px;height:384px;" class="forceNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9d0fb4494100822020d8">{"x":{"links":{"source":[0,0,2,0,2,0,3,4,2,3,4,0,2,4,6,0,2,5,6,7,0,2,3,6,2,3,5,7],"target":[2,3,3,4,4,5,5,5,6,6,6,7,7,7,7,8,8,8,8,8,9,9,9,9,1,1,1,1],"value":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"colour":["#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666"]},"nodes":{"name":["1","10","2","3","4","5","6","7","8","9"],"group":[1,1,1,1,1,1,1,1,1,1],"nodesize":[8,8,8,8,8,8,8,8,8,8]},"options":{"NodeID":"name","Group":"group","colourScale":"d3.scaleOrdinal(['blue'])","fontSize":7,"fontFamily":"serif","clickTextSize":17.5,"linkDistance":50,"linkWidth":"'1.5px'.toString()","charge":-100,"opacity":0.6,"zoom":false,"legend":false,"arrows":false,"nodesize":true,"radiusCalculation":"d.nodesize","bounded":false,"opacityNoHover":1,"clickAction":null}},"evals":[],"jsHooks":[]}</script>
 </div>
+<h3 id="node-degree">Node degree</h3>
 <p>Let’s now take a look at vertices. What can we say about a vertex to describe it?</p>
 <p>Well, first there is the ID that we gave it, but that’s not very descriptive, is it?</p>
 <p>In a simple graph like the ones that we just saw, there is one glaring thing that we can describe about a vertex: The number of edges that attach to it.</p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="talking-about-graphs_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
+<div id="htmlwidget-61d073feb7c5e69003b9" style="width:624px;height:384px;" class="forceNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-61d073feb7c5e69003b9">{"x":{"links":{"source":[0,0,0,3,1,3,0,2,3,4],"target":[1,2,4,4,5,5,6,6,6,6],"value":[1,1,1,1,1,1,1,1,1,1],"colour":["#666","#666","#666","#666","#666","#666","#666","#666","#666","#666"]},"nodes":{"name":["1","2","3","4","5","6","7"],"group":[1,1,1,1,1,1,1],"nodesize":[8,8,8,8,8,8,8]},"options":{"NodeID":"name","Group":"group","colourScale":"d3.scaleOrdinal(['blue'])","fontSize":7,"fontFamily":"serif","clickTextSize":17.5,"linkDistance":50,"linkWidth":"'1.5px'.toString()","charge":-100,"opacity":0.6,"zoom":false,"legend":false,"arrows":false,"nodesize":true,"radiusCalculation":"d.nodesize","bounded":false,"opacityNoHover":1,"clickAction":null}},"evals":[],"jsHooks":[]}</script>
 </div>
-<p>Look at vertex 1. It has 3 edges attached to it. Vertex 7 has 2 edges attached to it.</p>
+<p>Look at vertex 1. It has 4 edges attached to it. Vertex 7 has 4 edges attached to it.</p>
 <p>We can see that this number differs between vertices. In a small graph like this one, these differences seem insignificant, but you will see that they make a huge difference, especially if you look at larger graphs.</p>
 <p>For instance, if you use a graph to model a social network (vertices are people and edges are relationships among them), can you see how much of a difference it would make if one person has 1000 acquaintances and another one has only 20?</p>
 <p>The number of edges that attach to a node is called the <em>degree</em> of a vertex (or simpler: <em>node degree</em>).</p>
