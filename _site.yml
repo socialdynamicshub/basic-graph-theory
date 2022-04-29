@@ -1,0 +1,14 @@
+name: "basic-graph-theory"
+title: "Basic Graph Theory"
+description: |
+  Basic Graph Theory
+output_dir: "docs"
+navbar:
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "Basic Graph Theory"
+      href: basic-graph-theory.html
+    - text: "About"
+      href: about.html
+output: distill::distill_article
