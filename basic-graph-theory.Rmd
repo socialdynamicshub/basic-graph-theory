@@ -1,12 +1,12 @@
 ---
 title: "Basic Graph Theory"
 description: |
-  A new article created using the Distill format.
+  A brief introduction to graph and network theory
 author:
-  - name: Nora Jones 
-    url: https://example.com/norajones
-    affiliation: Spacely Sprockets
-    affiliation_url: https://example.com/spacelysprokets
+  - name: Johannes Nakayama
+    url: https://example.com/
+    affiliation: example affiliation
+    affiliation_url: https://example.com
 date: "`r Sys.Date()`"
 output: distill::distill_article
 ---
@@ -17,9 +17,13 @@ library(igraph)
 set.seed(420)
 ```
 
+
+Many naturally occurring phenomena can be described as networks.
+
+
 ## What is a graph?
 
-In essence, the simplest class of graphs is completely defined by a set of vertices and edges.
+The simplest class of graphs is completely defined by a set of vertices and edges.
 What are vertices and edges?
 
 You can think of a vertex (sometimes called a "node") as a dot in space and an edge as a line connecting two dots.
@@ -126,6 +130,10 @@ So, what is network density?
 
 In essence, it is the actual *edge count* divided by the *number of possible edges* in the graph.
 
+$$
+density(G) = \frac{edges(G)}{{possibleedges}(G)}
+$$
+
 How many edges can a graph with a fixed node count *n* possibly have?
 Well, there would be an edge between any two nodes in the network.
 A graph like that is called a *complete graph*.
@@ -139,11 +147,6 @@ $$
 Task: Can you figure out why?
 
 
-That means that the network density is given by:
-
-$$
-density(G) = \frac{edges(G)}{\frac{nodes(G)(nodes(G) - 1)}{2}}
-$$
 
 Task: Calculate the network density of the following graph:
 
