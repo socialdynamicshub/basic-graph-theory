@@ -1,0 +1,48 @@
+---
+title: "Why graphs?"
+description: |
+  Graphs - why should we bother?.
+date: "`r Sys.Date()`"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(igraph)
+set.seed(420)
+```
+
+# Why graphs?
+
+Graphs are very versatile models of almost any kind relationship.
+They are "things" and how these "things" are connected to one another.
+
+There are a lot of upsides to modeling relationships with graphs.
+First of all, graphs are very well formalized discrete mathematical structures.
+No matter the domain that we are modeling, we can profit from a large toolbox of mathematical analysis techniques and metrics.
+
+Now, what could we model with graphs?
+
+The possibilities are really endless.
+You could model a social network where vertices are people and edges are relationships between them.
+This opens the gates for a flood of questions that you could ask about such a network.
+Can we find people that are very well connected?
+Can we identify cohesive communities in the network?
+Are there people who link two communities together?
+All these questions and many more can be addressed in a graph theoretic approach.
+
+You could also model an electric grid with a graph.
+In this case, vertices would be transformation stations and edges would be powerlines.
+You could ask whether the malfunctioning of one station could lead to outages in another region.
+Or identify stations that could be considered high-risk targets of sabotage attacks.
+
+Another example is traffic.
+A network could be the model for streets and crossings.
+Artificial cars could "drive" through the network.
+Now you can investigate what happens if an accident blocks an important crossing.
+Is there an enhanced risk of congestions?
+Are certain areas at a higher risk to experience congestions?
+How could building a new road aleviate traffic in an area that has a school?
+
+These are only three examples and they all employ only the simplest of possible graph models.
+There are a lot more specifications of graphs that can be used for more specific problems (for instance, what happens if the relationships, i.e., the edges, are **directed**, or what if we differentiate between the importance of edges and attach a *weight* to them?).

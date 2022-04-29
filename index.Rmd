@@ -1,7 +1,12 @@
 ---
 title: "Basic Graph Theory"
 description: |
-  Welcome to the website. I hope you enjoy it!
+  A brief introduction to graph and network theory
+author:
+  - name: Johannes Nakayama
+    url: https://example.com/
+    affiliation: example affiliation
+    affiliation_url: https://example.com
 site: distill::distill_website
 ---
 
@@ -16,4 +21,8 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```
 
-This is the home page.
+
+
+* [What is a graph?](./what-is-a-graph.html)
+* [Why graphs?](./why-graphs.html)
+* [Talking-about-graphs](./talking-about-graphs.html)
