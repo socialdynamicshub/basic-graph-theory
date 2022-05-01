@@ -1,0 +1,21 @@
+---
+title: "Talking about graphs"
+description: |
+  Build a basic vocabulary to describe and characterize graphs.
+date: "`r Sys.Date()`"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(igraph)
+library(networkD3)
+set.seed(420)
+```
+
+Before we go further into other types of graphs, let's first build a basic vocabulary of how to talk about graphs.
+How can we **quantify** simple things about a graph to characterize certain aspects of it?
+
+
+
+TODO: list modules

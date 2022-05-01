@@ -55,14 +55,14 @@ g <- graph.ring(7)
 simpleNetwork(as_data_frame(g), charge = -100, nodeColour = "blue")
 ```
 
-Obviously, this one looks a little different.
+Obviously, it looks a little different. 
+
+And this one looks yet a little different:
 
 ```{r}
 g <- graph.star(7, mode = "undirected")
 simpleNetwork(as_data_frame(g), charge = -100, nodeColour = "blue")
 ```
-
-This one looks yet a little different.
 
 But what differentiates these examples?
 [How can we describe graphs in a way that gives us a vocabulary to characterize them in a meaningful way?](./talking-about-graphs.html)

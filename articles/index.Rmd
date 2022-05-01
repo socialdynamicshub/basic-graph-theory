@@ -25,4 +25,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 * [What is a graph?](./what-is-a-graph.html)
 * [Why graphs?](./why-graphs.html)
-* [Talking-about-graphs](./talking-about-graphs.html)
+* [Talking about graphs](./talking-about-graphs.html)
+
+* [Network size and density](./network-size-and-density.html)
+* [Node degree](./node-degree.html)

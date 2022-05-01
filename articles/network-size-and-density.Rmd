@@ -1,0 +1,65 @@
+---
+title: "Network Size and Density"
+# description: |
+#   A new article created using the Distill format.
+date: "`r Sys.Date()`"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(igraph)
+library(networkD3)
+set.seed(420)
+```
+
+
+A low-hanging fruit is to first describe the **size** of a graph.
+We can count how many nodes and how many edges a graph has (**node count** and **edge count**).
+
+These two metrics seem inoccuously simple, but they give us everything we need to calculate an interesting metric that gives us a more meaningful way of characterizing a graph: its *density*.
+
+Look at these two graphs:
+
+```{r}
+g1 <- erdos.renyi.game(15, 0.1)
+g2 <- erdos.renyi.game(15, 0.9)
+simpleNetwork(as_data_frame(g1), charge = -100, nodeColour = "blue")
+simpleNetwork(as_data_frame(g2), charge = -100, nodeColour = "blue")
+```
+
+Despite the fact that they both have the same number of nodes, the difference between the two just hits you right between the eyes.
+The second one is obviously more *dense* than the first one.
+
+There is an easy way to quantify this.
+**Network density** is calculated by dividing the **actual edge count** by the **number of possible edges**, that is, the maximum number of edges possible in a graph with a given node count.
+
+$$
+density(G) = \frac{edges(G)}{{edges_{max}}(G)}
+$$
+
+The maximum number of edges would be present if there is an edge between each possible pair of nodes.
+A graph like that is called a **complete graph**.
+
+The number of edges in a complete graph with $n$ nodes is calculated as follows:
+
+$$
+\frac{n(n - 1)}{2}
+$$
+
+#### Task
+
+Can you figure out why?
+
+#### Task
+
+Calculate the network density of the following graph:
+
+```{r}
+g <- erdos.renyi.game(10, 0.5)
+simpleNetwork(as_data_frame(g), charge = -100, nodeColour = "blue")
+```
+
+
+
+

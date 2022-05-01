@@ -1,0 +1,36 @@
+---
+title: "Node Degree"
+# description: |
+#   A new article created using the Distill format.
+date: "`r Sys.Date()`"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+Let's now take a look at vertices.
+What can we say about a vertex to describe it?
+
+Well, first there is the ID that we gave it, but that's not very descriptive, is it?
+
+In a simple graph like the ones that we just saw, there is one glaring thing that we can describe about a vertex:
+The number of edges that attach to it.
+
+```{r}
+g <- erdos.renyi.game(7, 0.6)
+simpleNetwork(as_data_frame(g), charge = -100, nodeColour = "blue")
+```
+
+Look at vertex 1.
+It has `r degree(g, 1)` edges attached to it.
+Vertex 7 has `r degree(g, 7)` edges attached to it.
+
+We can see that this number differs between vertices.
+In a small graph like this one, these differences seem insignificant, but you will see that they make a huge difference, especially if you look at larger graphs.
+
+For instance, if you use a graph to model a social network (vertices are people and edges are relationships among them), can you see how much of a difference it would make if one person has 1000 acquaintances and another one has only 20?
+
+The number of edges that attach to a node is called the *node degree*.
