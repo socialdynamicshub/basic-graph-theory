@@ -12,8 +12,6 @@ library(igraph)
 set.seed(420)
 ```
 
-# Why graphs?
-
 Graphs are very versatile models of almost any kind relationship.
 They are "things" and how these "things" are connected to one another.
 

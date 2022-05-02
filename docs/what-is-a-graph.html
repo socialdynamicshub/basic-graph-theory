@@ -23,6 +23,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -2092,8 +2093,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>The simplest class of graphs is completely defined by a set of <strong>vertices</strong> and a set of <strong>edges</strong>. You can think of a vertex as a dot in space and an edge as a line connecting two dots. In this course, we will refer to vertices as <strong>nodes</strong> because frankly, it’s just simpler to say and type.</p>
 <p>Let’s consider a first example:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div id="htmlwidget-e5e257b3555775e9019c" style="width:624px;height:384px;" class="forceNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e5e257b3555775e9019c">{"x":{"links":{"source":[0,0,0,2,2,4,6,1,1],"target":[2,4,6,4,5,3,5,3,5],"value":[1,1,1,1,1,1,1,1,1],"colour":["#666","#666","#666","#666","#666","#666","#666","#666","#666"]},"nodes":{"name":["1","2","3","4","5","6","7"],"group":[1,1,1,1,1,1,1],"nodesize":[8,8,8,8,8,8,8]},"options":{"NodeID":"name","Group":"group","colourScale":"d3.scaleOrdinal(['blue'])","fontSize":7,"fontFamily":"serif","clickTextSize":17.5,"linkDistance":50,"linkWidth":"'1.5px'.toString()","charge":-100,"opacity":0.6,"zoom":false,"legend":false,"arrows":false,"nodesize":true,"radiusCalculation":"d.nodesize","bounded":false,"opacityNoHover":1,"clickAction":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-3909d0a43a3df32e70b8" style="width:624px;height:384px;" class="forceNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3909d0a43a3df32e70b8">{"x":{"links":{"source":[0,0,0,2,2,4,6,1,1],"target":[2,4,6,4,5,3,5,3,5],"value":[1,1,1,1,1,1,1,1,1],"colour":["#666","#666","#666","#666","#666","#666","#666","#666","#666"]},"nodes":{"name":["1","2","3","4","5","6","7"],"group":[1,1,1,1,1,1,1],"nodesize":[8,8,8,8,8,8,8]},"options":{"NodeID":"name","Group":"group","colourScale":"d3.scaleOrdinal(['blue'])","fontSize":7,"fontFamily":"serif","clickTextSize":17.5,"linkDistance":50,"linkWidth":"'1.5px'.toString()","charge":-100,"opacity":0.6,"zoom":false,"legend":false,"arrows":false,"nodesize":true,"radiusCalculation":"d.nodesize","bounded":false,"opacityNoHover":1,"clickAction":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 <p>This is a simple graph. As you can see, each node is labelled with a number which is how we usually keep track of nodes. Labeling nodes with numbers is not obligatory though. You can call your nodes whatever you want as long they are <strong>uniquely identifiable</strong> (which is why we call the node labels <strong>IDs</strong>). Sticking with the number labeling, though, we can define the set of nodes more formally by:</p>
 <p><span class="math display">\[
@@ -2109,14 +2110,14 @@ G = (N, E), \text{where N is the set of nodes and E is the set of edges.}
 \]</span></p>
 <p>Now that we have seen our first graph, let’s take a look at some other ones. This is also a graph:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div id="htmlwidget-626dd987b14d92e143f7" style="width:624px;height:384px;" class="forceNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-626dd987b14d92e143f7">{"x":{"links":{"source":[0,1,2,3,4,5,0],"target":[1,2,3,4,5,6,6],"value":[1,1,1,1,1,1,1],"colour":["#666","#666","#666","#666","#666","#666","#666"]},"nodes":{"name":["1","2","3","4","5","6","7"],"group":[1,1,1,1,1,1,1],"nodesize":[8,8,8,8,8,8,8]},"options":{"NodeID":"name","Group":"group","colourScale":"d3.scaleOrdinal(['blue'])","fontSize":7,"fontFamily":"serif","clickTextSize":17.5,"linkDistance":50,"linkWidth":"'1.5px'.toString()","charge":-100,"opacity":0.6,"zoom":false,"legend":false,"arrows":false,"nodesize":true,"radiusCalculation":"d.nodesize","bounded":false,"opacityNoHover":1,"clickAction":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-644f92f72b7e821fb5fb" style="width:624px;height:384px;" class="forceNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-644f92f72b7e821fb5fb">{"x":{"links":{"source":[0,1,2,3,4,5,0],"target":[1,2,3,4,5,6,6],"value":[1,1,1,1,1,1,1],"colour":["#666","#666","#666","#666","#666","#666","#666"]},"nodes":{"name":["1","2","3","4","5","6","7"],"group":[1,1,1,1,1,1,1],"nodesize":[8,8,8,8,8,8,8]},"options":{"NodeID":"name","Group":"group","colourScale":"d3.scaleOrdinal(['blue'])","fontSize":7,"fontFamily":"serif","clickTextSize":17.5,"linkDistance":50,"linkWidth":"'1.5px'.toString()","charge":-100,"opacity":0.6,"zoom":false,"legend":false,"arrows":false,"nodesize":true,"radiusCalculation":"d.nodesize","bounded":false,"opacityNoHover":1,"clickAction":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 <p>Obviously, it looks a little different.</p>
 <p>And this one looks yet a little different:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div id="htmlwidget-ee7fa43e13b152f90dcf" style="width:624px;height:384px;" class="forceNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ee7fa43e13b152f90dcf">{"x":{"links":{"source":[0,0,0,0,0,0],"target":[1,2,3,4,5,6],"value":[1,1,1,1,1,1],"colour":["#666","#666","#666","#666","#666","#666"]},"nodes":{"name":["1","2","3","4","5","6","7"],"group":[1,1,1,1,1,1,1],"nodesize":[8,8,8,8,8,8,8]},"options":{"NodeID":"name","Group":"group","colourScale":"d3.scaleOrdinal(['blue'])","fontSize":7,"fontFamily":"serif","clickTextSize":17.5,"linkDistance":50,"linkWidth":"'1.5px'.toString()","charge":-100,"opacity":0.6,"zoom":false,"legend":false,"arrows":false,"nodesize":true,"radiusCalculation":"d.nodesize","bounded":false,"opacityNoHover":1,"clickAction":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-7845463a6252e110fafb" style="width:624px;height:384px;" class="forceNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7845463a6252e110fafb">{"x":{"links":{"source":[0,0,0,0,0,0],"target":[1,2,3,4,5,6],"value":[1,1,1,1,1,1],"colour":["#666","#666","#666","#666","#666","#666"]},"nodes":{"name":["1","2","3","4","5","6","7"],"group":[1,1,1,1,1,1,1],"nodesize":[8,8,8,8,8,8,8]},"options":{"NodeID":"name","Group":"group","colourScale":"d3.scaleOrdinal(['blue'])","fontSize":7,"fontFamily":"serif","clickTextSize":17.5,"linkDistance":50,"linkWidth":"'1.5px'.toString()","charge":-100,"opacity":0.6,"zoom":false,"legend":false,"arrows":false,"nodesize":true,"radiusCalculation":"d.nodesize","bounded":false,"opacityNoHover":1,"clickAction":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 <p>But what differentiates these examples? <a href="./talking-about-graphs.html">How can we describe graphs in a way that gives us a vocabulary to characterize them in a meaningful way?</a></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>

@@ -23,6 +23,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -86,29 +87,29 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-  <title>Basic Graph Theory: Network Size and Density</title>
+  <title>Basic Graph Theory: The Watts-Strogatz Model</title>
 
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2022-05-01"/>
-  <meta property="article:created" itemprop="dateCreated" content="2022-05-01"/>
+  <meta property="article:published" itemprop="datePublished" content="2022-05-02"/>
+  <meta property="article:created" itemprop="dateCreated" content="2022-05-02"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Basic Graph Theory: Network Size and Density"/>
+  <meta property="og:title" content="Basic Graph Theory: The Watts-Strogatz Model"/>
   <meta property="og:type" content="article"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Basic Graph Theory"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Basic Graph Theory: Network Size and Density"/>
+  <meta property="twitter:title" content="Basic Graph Theory: The Watts-Strogatz Model"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Network Size and Density"]},{"type":"character","attributes":{},"value":["2022-05-01"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","date","output"]}},"value":[{"type":"character","attributes":{},"value":["The Watts-Strogatz Model"]},{"type":"character","attributes":{},"value":["2022-05-02"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2037,9 +2038,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   <!--/radix_placeholder_distill-->
   <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
-  <script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-  <script src="site_libs/d3-4.5.0/d3.min.js"></script>
-  <script src="site_libs/forceNetwork-binding-0.4/forceNetwork.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2059,7 +2057,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Network Size and Density","authors":[],"publishedDate":"2022-05-01T00:00:00.000+02:00"}
+{"title":"The Watts-Strogatz Model","authors":[],"publishedDate":"2022-05-02T00:00:00.000+02:00"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2081,7 +2079,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Network Size and Density</h1>
+<h1>The Watts-Strogatz Model</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
 
@@ -2089,33 +2087,50 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
 <div class="d-article">
-<p>A low-hanging fruit is to first describe the <strong>size</strong> of a graph. We can count how many nodes and how many edges a graph has (<strong>node count</strong> and <strong>edge count</strong>).</p>
-<p>These two metrics seem inoccuously simple, but they give us everything we need to calculate an interesting metric that gives us a more meaningful way of characterizing a graph: its <em>density</em>.</p>
-<p>Look at these two graphs:</p>
+<p>Many naturally-occurring networks have a distinct and peculiar property. Although they can be huge in terms of node count, the average path length between two nodes remains small. <strong>Really</strong> small in some cases.</p>
+<p>If you take a social network, for instance, there are some famous experiments that show that any two nodes in the network are usually not separated by more than six degrees (the infamous <strong>six degrees of separation</strong>).</p>
+<p>In pop science speak, this means that you are a mere six social connections away from the Queen of England.</p>
+<p>The <a href="./erdos-renyi-model.html">Erdös-Renyi model</a> does not capture this property.</p>
+<p>As it had been the predominant random graph model that was used for all kinds of purposes for some time, the field was ready for a new model.</p>
+<p>The decisive innovation came from Duncan Watts and Steven Strogatz, hence the name <strong>Watts-Strogatz model</strong> (WS model).</p>
+<p>Start with a regular ring lattice.</p>
 <div class="layout-chunk" data-layout="l-body">
-<div id="htmlwidget-5f4bd13adbd2ae123f53" style="width:624px;height:384px;" class="forceNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5f4bd13adbd2ae123f53">{"x":{"links":{"source":[7,0,9,10,7,6,9,7,10,12,11,3,9,10],"target":[8,12,12,12,13,1,2,3,3,3,4,4,5,5],"value":[1,1,1,1,1,1,1,1,1,1,1,1,1,1],"colour":["#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666"]},"nodes":{"name":["1","11","12","13","14","15","2","3","4","5","6","7","8","9"],"group":[1,1,1,1,1,1,1,1,1,1,1,1,1,1],"nodesize":[8,8,8,8,8,8,8,8,8,8,8,8,8,8]},"options":{"NodeID":"name","Group":"group","colourScale":"d3.scaleOrdinal(['blue'])","fontSize":7,"fontFamily":"serif","clickTextSize":17.5,"linkDistance":50,"linkWidth":"'1.5px'.toString()","charge":-100,"opacity":0.6,"zoom":false,"legend":false,"arrows":false,"nodesize":true,"radiusCalculation":"d.nodesize","bounded":false,"opacityNoHover":1,"clickAction":null}},"evals":[],"jsHooks":[]}</script>
-<div id="htmlwidget-5c754b59ae0f69c0efe5" style="width:624px;height:384px;" class="forceNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5c754b59ae0f69c0efe5">{"x":{"links":{"source":[0,0,0,7,8,0,7,8,0,7,8,9,10,0,7,8,9,10,11,7,8,9,10,11,12,0,7,8,9,10,11,12,13,7,8,9,10,11,12,13,14,0,7,8,9,10,11,12,13,14,0,7,8,9,10,11,12,14,1,0,7,8,9,10,11,12,13,14,2,3,0,7,8,9,10,11,12,13,14,1,2,3,4,0,7,8,9,10,11,12,13,14,1,2,4,5],"target":[7,8,9,9,9,10,10,10,11,11,11,11,11,12,12,12,12,12,12,13,13,13,13,13,13,14,14,14,14,14,14,14,14,1,1,1,1,1,1,1,1,2,2,2,2,2,2,2,2,2,3,3,3,3,3,3,3,3,3,4,4,4,4,4,4,4,4,4,4,4,5,5,5,5,5,5,5,5,5,5,5,5,5,6,6,6,6,6,6,6,6,6,6,6,6,6],"value":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"colour":["#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666"]},"nodes":{"name":["1","10","11","12","13","14","15","2","3","4","5","6","7","8","9"],"group":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"nodesize":[8,8,8,8,8,8,8,8,8,8,8,8,8,8,8]},"options":{"NodeID":"name","Group":"group","colourScale":"d3.scaleOrdinal(['blue'])","fontSize":7,"fontFamily":"serif","clickTextSize":17.5,"linkDistance":50,"linkWidth":"'1.5px'.toString()","charge":-100,"opacity":0.6,"zoom":false,"legend":false,"arrows":false,"nodesize":true,"radiusCalculation":"d.nodesize","bounded":false,"opacityNoHover":1,"clickAction":null}},"evals":[],"jsHooks":[]}</script>
+<p><img src="watts-strogatz-model_files/figure-html5/unnamed-chunk-1-1.png" width="624" /></p>
 </div>
-<p>Despite the fact that they both have the same number of nodes, the difference between the two just hits you right between the eyes. The second one is obviously more <em>dense</em> than the first one.</p>
-<p>There is an easy way to quantify this. <strong>Network density</strong> is calculated by dividing the <strong>actual edge count</strong> by the <strong>number of possible edges</strong>, that is, the maximum number of edges possible in a graph with a given node count.</p>
-<p><span class="math display">\[
-density(G) = \frac{edges(G)}{{edges_{max}}(G)}
-\]</span></p>
-<p>The maximum number of edges would be present if there is an edge between each possible pair of nodes. A graph like that is called a <strong>complete graph</strong>.</p>
-<p>The number of edges in a complete graph with <span class="math inline">\(n\)</span> nodes is calculated as follows:</p>
-<p><span class="math display">\[
-\frac{n(n - 1)}{2}
-\]</span></p>
+<p>This is a regular ring lattice. There are two parameters that you already have to give the WS model to construct this lattice: <span class="math inline">\(N\)</span> is the number of nodes and <span class="math inline">\(k\)</span> is the mean node degree.</p>
+<p>In the case of a regular ring lattice, the mean node degree is assumed to be an even number. In colloquial terms, you construct it by arranging the nodes in a circle and attaching each node to its <span class="math inline">\(\frac{k}{2}\)</span> neighbors on each side. That last one is a mouth full. Let’s look at it in detail.</p>
+<p>Consider the graph above again and look at node 1. It attaches to <span class="math inline">\(2\)</span> and <span class="math inline">\(3\)</span> on one side and to <span class="math inline">\(10\)</span> and <span class="math inline">\(9\)</span> on the other. Node <span class="math inline">\(2\)</span> attaches to <span class="math inline">\(3\)</span> and <span class="math inline">\(4\)</span> on the one side and to <span class="math inline">\(1\)</span> and <span class="math inline">\(10\)</span> on the other. You can check this for every node and see that they all attach to <span class="math inline">\(2\)</span> other nodes on each side. Hence the parameter <span class="math inline">\(k\)</span>, in this case, is <span class="math inline">\(4\)</span>.</p>
+<p>Here is an example with <span class="math inline">\(k = 6\)</span>:</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="watts-strogatz-model_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
+</div>
+<p>And for good measure, here is a lattice with <span class="math inline">\(k = 2\)</span>:</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="watts-strogatz-model_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
+</div>
+<p>Let’s return to the first graph:</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="watts-strogatz-model_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
+</div>
+<p>Suppose the above graph is the regular ring lattice you constructed. The WS model algorithm now proceeds as follows:</p>
+<p>First, there is yet another parameter that we need, <span class="math inline">\(\beta\)</span>. Start with node 1 now and go through each edge that attaches to it. Reroute each edge to another node with probability <span class="math inline">\(\beta\)</span>. The node to reroute to is drawn uniformly at random while avoiding self-loops. This means that you put all the other nodes (<em>excluding</em> the node in question, in this case node 1) in a bag and just draw a new node to attach the edge to.</p>
+<p>Here are some samples that were generated by this model:</p>
+<p><span class="math inline">\(\beta = 0.3\)</span>:</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="watts-strogatz-model_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
+</div>
+<p><span class="math inline">\(\beta = 0.1\)</span></p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="watts-strogatz-model_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
+</div>
+<p><span class="math inline">\(\beta = 0.9\)</span></p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="watts-strogatz-model_files/figure-html5/unnamed-chunk-7-1.png" width="624" /></p>
+</div>
 <h4 id="task">Task</h4>
-<p>Can you figure out why?</p>
+<p>Can you guess what happens if you set <span class="math inline">\(\beta = 1\)</span>?</p>
 <h4 id="task-1">Task</h4>
-<p>Calculate the network density of the following graph:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div id="htmlwidget-9d0fb4494100822020d8" style="width:624px;height:384px;" class="forceNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9d0fb4494100822020d8">{"x":{"links":{"source":[0,0,2,0,2,0,3,4,2,3,4,0,2,4,6,0,2,5,6,7,0,2,3,6,2,3,5,7],"target":[2,3,3,4,4,5,5,5,6,6,6,7,7,7,7,8,8,8,8,8,9,9,9,9,1,1,1,1],"value":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],"colour":["#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666","#666"]},"nodes":{"name":["1","10","2","3","4","5","6","7","8","9"],"group":[1,1,1,1,1,1,1,1,1,1],"nodesize":[8,8,8,8,8,8,8,8,8,8]},"options":{"NodeID":"name","Group":"group","colourScale":"d3.scaleOrdinal(['blue'])","fontSize":7,"fontFamily":"serif","clickTextSize":17.5,"linkDistance":50,"linkWidth":"'1.5px'.toString()","charge":-100,"opacity":0.6,"zoom":false,"legend":false,"arrows":false,"nodesize":true,"radiusCalculation":"d.nodesize","bounded":false,"opacityNoHover":1,"clickAction":null}},"evals":[],"jsHooks":[]}</script>
-</div>
+<p>Implement this model in <a href="https://julialang.org/">Julia</a>. (TODO: write basic julia or Graphs.jl tutorial)</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

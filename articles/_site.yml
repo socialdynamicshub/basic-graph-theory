@@ -2,7 +2,7 @@ name: "basic-graph-theory"
 title: "Basic Graph Theory"
 description: |
   Basic Graph Theory
-output_dir: "docs"
+output_dir: "../docs"
 navbar:
   right:
     - text: "Home"

@@ -1,0 +1,40 @@
+---
+title: "The Erdös-Renyi Model"
+date: "`r Sys.Date()`"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+The Erdös-Renyi (ER) model is a random graph model.
+Sometimes, we are not interested in a particular graph, but rather a class of graphs.
+
+If you had to come up with a random way of creating a graph, how would you do it?
+
+Erdös and Renyi asked themselves the same thing.
+They came up with a model that is now known as the ER model.
+
+Start with a fixed number of nodes.
+Now take each pair of nodes and add an edge between them with probability $p$.
+
+There are several things to note about this model.
+
+First of all, what could you say about the *density* of that graph?
+If you create a sufficient number of random graphs this way, the average network density will be very close to $p$.
+
+There is another way of setting up the model.
+Start with a fixed number of nodes.
+Now take a fixed number of edges smaller or equal the number of possible edges.
+Put a random edge into the network until you have as many edges as you chose.
+
+This way of setting up the network has the advantage that you can control the network density precisely.
+Every graph set up this way will have the same network density.
+
+
+
+
+
+
