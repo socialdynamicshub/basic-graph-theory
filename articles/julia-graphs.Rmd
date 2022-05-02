@@ -1,6 +1,7 @@
 ---
 title: "Graphs.jl"
 output: distill::distill_article
+bibliography: bibliography.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -12,7 +13,7 @@ To learn the basics of graph theory, you need nothing more than pen and paper.
 However, once you move on to more complex analyses, you will need a computer.
 Graphs are so fundamental to such a diverse range of tasks, that virtually every programming language has a library that provides tools to create and analyze graphs.
 
-Here, we will have a quick look into `Graphs.jl`, a Julia library for graphs.
+Here, we will have a quick look into `Graphs.jl` [@fairbanks2021juliagraphs], a Julia library for graphs.
 
 If you have never worked with Julia before, we would recommend that you learn the basics of Julia first.
 [TODO: write basic julia tutorial]

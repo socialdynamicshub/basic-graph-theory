@@ -85,6 +85,27 @@ code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
+<style>
+  div.csl-bib-body { }
+  div.csl-entry {
+    clear: both;
+    }
+  .hanging div.csl-entry {
+    margin-left:2em;
+    text-indent:-2em;
+  }
+  div.csl-left-margin {
+    min-width:2em;
+    float:left;
+  }
+  div.csl-right-inline {
+    margin-left:2em;
+    padding-left:1em;
+  }
+  div.csl-indent {
+    margin-left: 2em;
+  }
+</style>
 
   <!--radix_placeholder_meta_tags-->
   <title>Basic Graph Theory: Graphs.jl</title>
@@ -103,10 +124,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <meta property="twitter:title" content="Basic Graph Theory: Graphs.jl"/>
 
   <!--/radix_placeholder_meta_tags-->
+  
+  <meta name="citation_reference" content="citation_title=JuliaGraphs/graphs.jl: An optimized graphs package for the julia programming language;citation_publication_date=2021;citation_author=James Fairbanks;citation_author=Mathieu Besanȩon;citation_author=Schölly Simon;citation_author=Júlio Hoffiman;citation_author=Nick Eubank;citation_author=Stefan Karpinski"/>
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output"]}},"value":[{"type":"character","attributes":{},"value":["Graphs.jl"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","bibliography"]}},"value":[{"type":"character","attributes":{},"value":["Graphs.jl"]},{"type":"character","attributes":{},"value":["distill::distill_article"]},{"type":"character","attributes":{},"value":["bibliography.bib"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2085,7 +2108,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <div class="d-article">
 <p>To learn the basics of graph theory, you need nothing more than pen and paper. However, once you move on to more complex analyses, you will need a computer. Graphs are so fundamental to such a diverse range of tasks, that virtually every programming language has a library that provides tools to create and analyze graphs.</p>
-<p>Here, we will have a quick look into <code>Graphs.jl</code>, a Julia library for graphs.</p>
+<p>Here, we will have a quick look into <code>Graphs.jl</code> <span class="citation" data-cites="fairbanks2021juliagraphs">(<a href="#ref-fairbanks2021juliagraphs" role="doc-biblioref">Fairbanks et al. 2021</a>)</span>, a Julia library for graphs.</p>
 <p>If you have never worked with Julia before, we would recommend that you learn the basics of Julia first. [TODO: write basic julia tutorial]</p>
 <div class="layout-chunk" data-layout="l-body">
 
@@ -2126,6 +2149,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h4 id="task">Task</h4>
 <p>Check if you can verify whether the graph in the plot is the correct visualization for the graph that we created before.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-fairbanks2021juliagraphs" class="csl-entry" role="doc-biblioentry">
+Fairbanks, James, Mathieu Besanȩon, Schölly Simon, Júlio Hoffiman, Nick Eubank, and Stefan Karpinski. 2021. <span>“JuliaGraphs/Graphs.jl: An Optimized Graphs Package for the Julia Programming Language.”</span> <a href="https://github.com/JuliaGraphs/Graphs.jl/">https://github.com/JuliaGraphs/Graphs.jl/</a>.
+</div>
+</div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
@@ -2137,7 +2165,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->
 <!--radix_placeholder_appendices-->
-<div class="appendix-bottom"></div>
+<div class="appendix-bottom">
+<h3 id="references">References</h3>
+<div id="references-listing"></div>
+</div>
 <!--/radix_placeholder_appendices-->
 <!--radix_placeholder_navigation_after_body-->
 <!--/radix_placeholder_navigation_after_body-->
