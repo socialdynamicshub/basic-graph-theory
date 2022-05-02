@@ -1,7 +1,5 @@
 ---
 title: "What is a graph?"
-description: |
-  Develop an intuitive understanding for graphs.
 output: distill::distill_article
 ---
 

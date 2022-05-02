@@ -87,26 +87,26 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-  <title>Basic Graph Theory: Why graphs?</title>
+  <title>Basic Graph Theory: Directed Graphs</title>
 
 
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Basic Graph Theory: Why graphs?"/>
+  <meta property="og:title" content="Basic Graph Theory: Directed Graphs"/>
   <meta property="og:type" content="article"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Basic Graph Theory"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Basic Graph Theory: Why graphs?"/>
+  <meta property="twitter:title" content="Basic Graph Theory: Directed Graphs"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output"]}},"value":[{"type":"character","attributes":{},"value":["Why graphs?"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output"]}},"value":[{"type":"character","attributes":{},"value":["Directed Graphs"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2054,7 +2054,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Why graphs?","authors":[]}
+{"title":"Directed Graphs","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2076,7 +2076,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Why graphs?</h1>
+<h1>Directed Graphs</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
 
@@ -2084,27 +2084,22 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
 <div class="d-article">
-<p>Across virtually all scientific domains, there are phenomena that can be described as <strong>networks</strong>. Things in nature just seem to like to connect.</p>
-<p>Let’s consider a couple of examples.</p>
-<p><strong>A social network</strong></p>
-<p>[GRAPHIC OF SOCIAL NETWORK]</p>
-<p>Can we find people that are very well connected? Can we identify cohesive communities in the network? Are there people who link two communities together? All these questions and many more can be addressed in a graph theoretic approach.</p>
-<p><strong>The electrical grid</strong></p>
-<p>[GRAPHIC OF ELECTRICAL GRID]</p>
-<p>How would the malfunctioning of one station affect the overall distribution of electricity? Could an outage at one station lead to outages in another region? Which stations could be considered high-risk targets of sabotage attacks?</p>
-<p><strong>Traffic</strong></p>
-<p>[GRAPHIC OF TRAFFIC NETWORK]</p>
-<p>What happens if an accident blocks an important crossing? Is there an enhanced risk of congestions? Are certain areas at a higher risk to experience congestions? How could building a new road aleviate traffic in an area that has a school?</p>
-<p><strong>The brain</strong></p>
-<p>[GRAPHIC OF NETWORK OF NEURONS]</p>
-<p>There are literally countless more examples of what you could describe as a network.</p>
-<h4 id="task">Task</h4>
-<p>Think of three more things that have a networked structure.</p>
-<p>So how would we model and analyze the examples above? That’s a question that we could decide <em>ad hoc</em> whenever we encounter the problem at hand. Luckily, we don’t have to. We can abstract away the essential structure of each of those and use a massive body of tools, metrics, and techniques that have been developed over centuries. That’s where <strong>graphs</strong> come into play.</p>
-<p>[GRAPHIC OF ABSTRACTION PROCESS]</p>
-<p>Graphs are very versatile models of almost any kind relationship. They are “things” and how these “things” are connected to one another.</p>
-<p>There are a lot of upsides to modeling relationships with graphs. First of all, graphs are very well formalized discrete mathematical structures. No matter the domain that we are modeling, we can profit from a large toolbox of mathematical analysis techniques and metrics.</p>
-<p>There are a lot more specifications of graphs that can be used for more specific problems (for instance, what happens if the relationships, i.e., the edges, are <strong>directed</strong>, or what if we differentiate between the importance of edges and attach a <em>weight</em> to them?).</p>
+<p>The graphs we’ve seen so far were <strong>undirected graphs</strong>. That means simply that the order of nodes in an edge does not matter. However, what if we restrict this condition? What if the relationship represented by an edge is <strong>directed</strong>?</p>
+<p>That’s what <strong>directed graphs</strong> are for!</p>
+<p>We draw a directed graph simply by putting an arrow head on one side of an edge:</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="directed-graphs_files/figure-html5/unnamed-chunk-1-1.png" width="624" /></p>
+</div>
+<p>Why would we need directed graphs?</p>
+<p>Consider the social media site Twitter.</p>
+<p>How do you connect to people on Twitter? You follow them. Following someone on Twitter is a one-sided connection. If you follow a celebrity, you get their updates on your feed, but they do not get yours in their feed. If we were to model Twitter as a network graph, we would model this relationship with directed edges.</p>
+<p>In contrast, a Facebook friendship is different. You send someone a friend request and then you are connected both ways. This relationship could be modeled with undirected edges.</p>
+<p>In undirected graphs, edges can be modeled as sets of two nodes because the order of nodes doesn’t matter. Directed graphs, however, cannot be formalized this way because the order of nodes in an edge matters. This is why we use Tuples to model edges. The notation for the graph above is the following:</p>
+<p><span class="math display">\[
+G = (N, E) \\
+N = \{1, 2, 3, 4, 5, 6, 7\} \\
+E = \{(1, 2), (1, 3), (2, 4), (2, 5), (3, 7), (6, 2), (6, 7), (7, 1)\}
+\]</span></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
@@ -2113,6 +2108,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="d-appendix">
 </div>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->

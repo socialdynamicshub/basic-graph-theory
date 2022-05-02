@@ -1,7 +1,7 @@
 ---
 title: "The Watts-Strogatz Model"
-date: "`r Sys.Date()`"
 output: distill::distill_article
+bibliography: bibliography.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -22,7 +22,7 @@ The [Erdös-Renyi model](./erdos-renyi-model.html) does not capture this propert
 
 As it had been the predominant random graph model that was used for all kinds of purposes for some time, the field was ready for a new model.
 
-The decisive innovation came from Duncan Watts and Steven Strogatz, hence the name **Watts-Strogatz model** (WS model).
+The decisive innovation came from Duncan Watts and Steven Strogatz [@watts1998collective], hence the name **Watts-Strogatz model** (WS model).
 
 Start with a regular ring lattice.
 

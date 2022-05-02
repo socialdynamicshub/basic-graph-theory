@@ -85,15 +85,33 @@ code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
+<style>
+  div.csl-bib-body { }
+  div.csl-entry {
+    clear: both;
+    }
+  .hanging div.csl-entry {
+    margin-left:2em;
+    text-indent:-2em;
+  }
+  div.csl-left-margin {
+    min-width:2em;
+    float:left;
+  }
+  div.csl-right-inline {
+    margin-left:2em;
+    padding-left:1em;
+  }
+  div.csl-indent {
+    margin-left: 2em;
+  }
+</style>
 
   <!--radix_placeholder_meta_tags-->
   <title>Basic Graph Theory: The Watts-Strogatz Model</title>
 
 
 
-  <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2022-05-02"/>
-  <meta property="article:created" itemprop="dateCreated" content="2022-05-02"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="Basic Graph Theory: The Watts-Strogatz Model"/>
@@ -106,10 +124,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <meta property="twitter:title" content="Basic Graph Theory: The Watts-Strogatz Model"/>
 
   <!--/radix_placeholder_meta_tags-->
+  
+  <meta name="citation_reference" content="citation_title=Collective dynamics of ‘small-world’networks;citation_publication_date=1998;citation_publisher=Nature Publishing Group;citation_volume=393;citation_author=Duncan J Watts;citation_author=Steven H Strogatz"/>
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","date","output"]}},"value":[{"type":"character","attributes":{},"value":["The Watts-Strogatz Model"]},{"type":"character","attributes":{},"value":["2022-05-02"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","bibliography"]}},"value":[{"type":"character","attributes":{},"value":["The Watts-Strogatz Model"]},{"type":"character","attributes":{},"value":["distill::distill_article"]},{"type":"character","attributes":{},"value":["bibliography.bib"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2057,7 +2077,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"The Watts-Strogatz Model","authors":[],"publishedDate":"2022-05-02T00:00:00.000+02:00"}
+{"title":"The Watts-Strogatz Model","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2092,7 +2112,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>In pop science speak, this means that you are a mere six social connections away from the Queen of England.</p>
 <p>The <a href="./erdos-renyi-model.html">Erdös-Renyi model</a> does not capture this property.</p>
 <p>As it had been the predominant random graph model that was used for all kinds of purposes for some time, the field was ready for a new model.</p>
-<p>The decisive innovation came from Duncan Watts and Steven Strogatz, hence the name <strong>Watts-Strogatz model</strong> (WS model).</p>
+<p>The decisive innovation came from Duncan Watts and Steven Strogatz <span class="citation" data-cites="watts1998collective">(<a href="#ref-watts1998collective" role="doc-biblioref">Watts and Strogatz 1998</a>)</span>, hence the name <strong>Watts-Strogatz model</strong> (WS model).</p>
 <p>Start with a regular ring lattice.</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="watts-strogatz-model_files/figure-html5/unnamed-chunk-1-1.png" width="624" /></p>
@@ -2132,6 +2152,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h4 id="task-1">Task</h4>
 <p>Implement this model in <a href="https://julialang.org/">Julia</a>. (TODO: write basic julia or Graphs.jl tutorial)</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-watts1998collective" class="csl-entry" role="doc-biblioentry">
+Watts, Duncan J, and Steven H Strogatz. 1998. <span>“Collective Dynamics of ‘Small-World’networks.”</span> <em>Nature</em> 393 (6684): 440–42.
+</div>
+</div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
@@ -2152,7 +2177,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->
 <!--radix_placeholder_appendices-->
-<div class="appendix-bottom"></div>
+<div class="appendix-bottom">
+<h3 id="references">References</h3>
+<div id="references-listing"></div>
+</div>
 <!--/radix_placeholder_appendices-->
 <!--radix_placeholder_navigation_after_body-->
 <!--/radix_placeholder_navigation_after_body-->
