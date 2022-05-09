@@ -18,19 +18,13 @@ Here, we will have a quick look into `Graphs.jl` [@fairbanks2021juliagraphs], a 
 If you have never worked with Julia before, we would recommend that you learn the basics of Julia first.
 [TODO: write basic julia tutorial]
 
+To install the library, simply call:
 
 ```{julia}
-using Pkg
-Pkg.activate(".")
-Pkg.add("Graphs")
-Pkg.add("GraphPlot")
-Pkg.add("Compose")
-Pkg.add("GraphRecipes")
-Pkg.add("Plots")
+# Note: If you are rendering this site on your machine for the first time,
+#       execute the following cell once either manually or by setting
+#       `eval=TRUE`.
 ```
-
-
-To install the library, simply call:
 
 ```{julia, eval=FALSE, echo=TRUE}
 using Pkg
@@ -41,7 +35,7 @@ Pkg.add("GraphRecipes")
 Pkg.add("Plots")
 ```
 
-To load the library in your script, exexcute the following:
+To load the library in your script, execute the following:
 
 ```{julia, echo=TRUE}
 using Graphs

@@ -2,7 +2,6 @@
 title: "Talking about graphs"
 description: |
   Build a basic vocabulary to describe and characterize graphs.
-date: "`r Sys.Date()`"
 output: distill::distill_article
 ---
 

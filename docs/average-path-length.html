@@ -85,51 +85,28 @@ code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
-<style>
-  div.csl-bib-body { }
-  div.csl-entry {
-    clear: both;
-    }
-  .hanging div.csl-entry {
-    margin-left:2em;
-    text-indent:-2em;
-  }
-  div.csl-left-margin {
-    min-width:2em;
-    float:left;
-  }
-  div.csl-right-inline {
-    margin-left:2em;
-    padding-left:1em;
-  }
-  div.csl-indent {
-    margin-left: 2em;
-  }
-</style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>Basic Graph Theory: Graphs.jl</title>
+  <title>Basic Graph Theory: Average Path Length</title>
 
 
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Basic Graph Theory: Graphs.jl"/>
+  <meta property="og:title" content="Basic Graph Theory: Average Path Length"/>
   <meta property="og:type" content="article"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Basic Graph Theory"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Basic Graph Theory: Graphs.jl"/>
+  <meta property="twitter:title" content="Basic Graph Theory: Average Path Length"/>
 
   <!--/radix_placeholder_meta_tags-->
-  
-  <meta name="citation_reference" content="citation_title=JuliaGraphs/graphs.jl: An optimized graphs package for the julia programming language;citation_publication_date=2021;citation_author=James Fairbanks;citation_author=Mathieu Besanȩon;citation_author=Schölly Simon;citation_author=Júlio Hoffiman;citation_author=Nick Eubank;citation_author=Stefan Karpinski"/>
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output","bibliography"]}},"value":[{"type":"character","attributes":{},"value":["Graphs.jl"]},{"type":"character","attributes":{},"value":["distill::distill_article"]},{"type":"character","attributes":{},"value":["bibliography.bib"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output"]}},"value":[{"type":"character","attributes":{},"value":["Average Path Length"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2089,7 +2066,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Graphs.jl","authors":[]}
+{"title":"Average Path Length","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2111,7 +2088,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Graphs.jl</h1>
+<h1>Average Path Length</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
 
@@ -2119,53 +2096,45 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
 <div class="d-article">
-<p>To learn the basics of graph theory, you need nothing more than pen and paper. However, once you move on to more complex analyses, you will need a computer. Graphs are so fundamental to such a diverse range of tasks, that virtually every programming language has a library that provides tools to create and analyze graphs.</p>
-<p>Here, we will have a quick look into <code>Graphs.jl</code> <span class="citation" data-cites="fairbanks2021juliagraphs">(<a href="#ref-fairbanks2021juliagraphs" role="doc-biblioref">Fairbanks et al. 2021</a>)</span>, a Julia library for graphs.</p>
-<p>If you have never worked with Julia before, we would recommend that you learn the basics of Julia first. [TODO: write basic julia tutorial]</p>
-<p>To install the library, simply call:</p>
+<p>The <strong>average path length</strong> of a network is the average length of the <em>shortest path</em> between any two nodes in the network. To compute the average path length, we first find the shortest path between all pairs of two nodes and then simply compute the arithmetic mean of these paths.</p>
+<p>Let’s see this in an example.</p>
 <div class="layout-chunk" data-layout="l-body">
-
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb1"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> Pkg</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Pkg.add(<span class="st">&quot;Graphs&quot;</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Pkg.add(<span class="st">&quot;GraphPlots&quot;</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>Pkg.add(<span class="st">&quot;Compose&quot;</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Pkg.add(<span class="st">&quot;GraphRecipes&quot;</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>Pkg.add(<span class="st">&quot;Plots&quot;</span>)</span></code></pre></div>
-</div>
-<p>To load the library in your script, execute the following:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb2"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> Graphs</span></code></pre></div>
-</div>
-<p>The <code>using</code> keyword brings the everything that the <code>Graphs</code> library exports into your global scope.</p>
-<p>Now that you have <code>Graphs.jl</code> installed and loaded, we can start working with it. Let’s begin by creating a simple graph and plotting:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb3"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> SimpleGraph(<span class="fl">5</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>add_edge<span class="op">!</span>(g<span class="op">,</span> <span class="fl">1</span><span class="op">,</span> <span class="fl">2</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>add_edge<span class="op">!</span>(g<span class="op">,</span> <span class="fl">3</span><span class="op">,</span> <span class="fl">4</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>add_edge<span class="op">!</span>(g<span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">4</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>add_edge<span class="op">!</span>(g<span class="op">,</span> <span class="fl">1</span><span class="op">,</span> <span class="fl">5</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>add_edge<span class="op">!</span>(g<span class="op">,</span> <span class="fl">2</span><span class="op">,</span> <span class="fl">5</span>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>add_edge<span class="op">!</span>(g<span class="op">,</span> <span class="fl">4</span><span class="op">,</span> <span class="fl">5</span>)</span></code></pre></div>
-</div>
-<p>This first simple snippet of Julia code already tells us a lot. First, incidentally, this is how we usually set up a Julia workflow in a script. You load the libraries at the top of the script and then move on to perform the task that the script is supposed to perform. In this case, we first constructed an empty undirected graph with 5 nodes (<code>g = SimpleGraph(5)</code>). Empty in this case means that the graph has no edges.</p>
-<p>Then we proceeded to add six edges to the graph (e.g., <code>add_edge!(g, 1, 2)</code> for “add an edge to <code>g</code> from node <code>1</code> to node <code>2</code>”). The <code>!</code> is a Julia convention for functions that <strong>manipulate an object in-place</strong>. It is important to keep this in mind. Here, it means that by simply calling the function, we modify the object <code>g</code> without having to assign it again.</p>
-<p>Let’s see whether everything went as planned:</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode" id="cb4"><pre class="sourceCode julia"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> Plots<span class="op">,</span> GraphRecipes</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>graphplot(g<span class="op">,</span> curves <span class="op">=</span> <span class="ex">false</span><span class="op">,</span> names <span class="op">=</span> collect(<span class="fl">1</span><span class="op">:</span>nv(g))<span class="op">,</span> markersize <span class="op">=</span> <span class="fl">0.2</span>)</span></code></pre></div>
-<p><img src="julia-graphs_files/figure-html5/unnamed-chunk-5-J1.png" width="300" /></p>
+<p><img src="average-path-length_files/figure-html5/unnamed-chunk-1-1.png" width="624" /></p>
 </div>
 <h4 id="task">Task</h4>
-<p>Check if you can verify whether the graph in the plot is the correct visualization for the graph that we created before.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
-<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
-<div id="ref-fairbanks2021juliagraphs" class="csl-entry" role="doc-biblioentry">
-Fairbanks, James, Mathieu Besanȩon, Schölly Simon, Júlio Hoffiman, Nick Eubank, and Stefan Karpinski. 2021. <span>“JuliaGraphs/Graphs.jl: An Optimized Graphs Package for the Julia Programming Language.”</span> <a href="https://github.com/JuliaGraphs/Graphs.jl/">https://github.com/JuliaGraphs/Graphs.jl/</a>.
-</div>
-</div>
+<p>When analyzing graphs, it is often helpful to have some basic knowledge of combinatorics. Can you figure out how many unique pairs of nodes there are for the network above without counting them by hand?</p>
+<p>There are <span class="math inline">\({n\choose k}\)</span> possibilities to choose a unique subset of <span class="math inline">\(k\)</span> elements in a set of <span class="math inline">\(n\)</span> elements. In the case of our graph above, there are <span class="math inline">\({5\choose 2}\)</span> ways to select a pair of nodes.</p>
+<p><span class="math display">\[
+{n\choose k} = \frac{n!}{k!(n-k)!}
+\]</span></p>
+<p>Thus, in this case:</p>
+<p><span class="math display">\[
+{5\choose 2} = \frac{5!}{2!(5-2)!} = \frac{5!}{2!3!} = \frac{5 \cdot 4}{1 \cdot2} = 10
+\]</span></p>
+<p>So there are <span class="math inline">\(10\)</span> ways to select a pair of nodes from the node set of the graph.</p>
+<p>Let’s list them out:</p>
+<p><span class="math display">\[
+\{1, 2\}, \{1, 3\}, \{1, 4\}, \{1, 5\}, \{2, 3\}, \{2, 4\}, \{2, 5\}, \{3, 4\}, \{3, 5\}, \{4, 5\}
+\]</span></p>
+<p>For each of these, we now look for the shortest path between them.</p>
+<p><span class="math display">\[
+|P_{min}(\{1, 2\})| = 3 \\
+|P_{min}(\{1, 3\})| = 1 \\
+|P_{min}(\{1, 4\})| = 2 \\
+|P_{min}(\{1, 5\})| = 1 \\
+|P_{min}(\{2, 3\})| = 3 \\
+|P_{min}(\{2, 4\})| = 1 \\
+|P_{min}(\{2, 5\})| = 2 \\
+|P_{min}(\{3, 4\})| = 2 \\
+|P_{min}(\{3, 5\})| = 1 \\
+|P_{min}(\{4, 5\})| = 1
+\]</span></p>
+<p>Now, we simply take the arithmetic mean of these shortest path lengths:</p>
+<p><span class="math display">\[
+\overline{P_{min}} = \frac{3 + 1 + 2 + 1 + 3 + 1 + 2 + 2 + 1 + 1}{10} = \frac{16}{10} = 1.6
+\]</span></p>
+<p>[ELABORATE] -&gt; digraphs? -&gt; weighted graphs? -&gt; never need to do by hand because of computers</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
@@ -2173,14 +2142,20 @@ Fairbanks, James, Mathieu Besanȩon, Schölly Simon, Júlio Hoffiman, Nick Euban
 <div class="d-appendix">
 </div>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->
 <!--radix_placeholder_appendices-->
-<div class="appendix-bottom">
-<h3 id="references">References</h3>
-<div id="references-listing"></div>
-</div>
+<div class="appendix-bottom"></div>
 <!--/radix_placeholder_appendices-->
 <!--radix_placeholder_navigation_after_body-->
 <!--/radix_placeholder_navigation_after_body-->

@@ -1,0 +1,18 @@
+---
+title: "Preferential Attachment - The Barabási-Albert Model"
+output: distill::distill_article
+bibliography: bibliography.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(igraph)
+library(dplyr)
+library(networkD3)
+```
+
+
+
+
+
+

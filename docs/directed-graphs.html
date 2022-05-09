@@ -2044,6 +2044,18 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <script src="site_libs/webcomponents-2.0.0/webcomponents.js"></script>
   <script src="site_libs/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
+  <script type="text/javascript" src="https://www.cookieconsent.com/releases/3.1.0/cookie-consent.js"></script>
+  <script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function () {
+  cookieconsent.run({
+  'notice_banner_type':'simple',
+  'consent_type': 'express',
+  'palette': 'light',
+  'language': 'en',
+  'website_name': 'basic-graph-theory',
+  'cookies_policy_url': 'url',
+  'change_preferences_selector':'#CookiePreferences'
+  });});</script>
   <!--/radix_placeholder_site_in_header-->
 
 
@@ -2084,22 +2096,24 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
 <div class="d-article">
-<p>The graphs we’ve seen so far were <strong>undirected graphs</strong>. That means simply that the order of nodes in an edge does not matter. However, what if we restrict this condition? What if the relationship represented by an edge is <strong>directed</strong>?</p>
-<p>That’s what <strong>directed graphs</strong> are for!</p>
-<p>We draw a directed graph simply by putting an arrow head on one side of an edge:</p>
+<p>The graphs we’ve seen so far were <strong>undirected graphs</strong>. If nodes <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are connected by an edge, <span class="math inline">\(A\)</span> relates to <span class="math inline">\(B\)</span> in the same way that <span class="math inline">\(B\)</span> relates to <span class="math inline">\(A\)</span>. This setup makes sense when modeling symmetrical relationships. What could be situations where we want to be more specific about the nature of the relationship modeled by the network?</p>
+<p>Consider the social media site Facebook. Being <em>friends</em> with someone on Facebook is a relationship on equal footings. You are as much friends with the other person as they are with you. You get their updates in your timeline and they get your updates in theirs. If you were to model the exchange of information on Facebook, a graph with symmetrical relationships would be appropriate. Thus you would probably opt for an undirected graph.</p>
+<p>Now, in contrast, think about Twitter If you follow someone on Twitter, how is the relationship different from a friendship on Facebook? It is <strong>asymmetrical</strong>. You following another person doesn’t imply them following you. You are <em>following</em> them and they <em>are followed</em> by you. If you follow a celebrity, you get their updates on your feed, but they do not get yours in their feed. Thus, if we were to model Twitter as a network graph, we would model this relationship with a <strong>directed graph</strong> (often simply called <strong>Digraphs</strong>).</p>
+<p>We draw a directed graph simply by putting an arrow head on one side of an edge to indicate the direction of the edge:</p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="directed-graphs_files/figure-html5/unnamed-chunk-1-1.png" width="624" /></p>
+<p><img src="directed-graphs_files/figure-html5/example-digraph-1.png" width="624" /></p>
 </div>
-<p>Why would we need directed graphs?</p>
-<p>Consider the social media site Twitter.</p>
-<p>How do you connect to people on Twitter? You follow them. Following someone on Twitter is a one-sided connection. If you follow a celebrity, you get their updates on your feed, but they do not get yours in their feed. If we were to model Twitter as a network graph, we would model this relationship with directed edges.</p>
-<p>In contrast, a Facebook friendship is different. You send someone a friend request and then you are connected both ways. This relationship could be modeled with undirected edges.</p>
-<p>In undirected graphs, edges can be modeled as sets of two nodes because the order of nodes doesn’t matter. Directed graphs, however, cannot be formalized this way because the order of nodes in an edge matters. This is why we use Tuples to model edges. The notation for the graph above is the following:</p>
+<p>We already saw the <a href="./what-is-a-graph.html">notation of an undirected graph</a>. The notation for directed graphs has a subtle difference. For the graph above, it is as follows:</p>
 <p><span class="math display">\[
 G = (N, E) \\
 N = \{1, 2, 3, 4, 5, 6, 7\} \\
 E = \{(1, 2), (1, 3), (2, 4), (2, 5), (3, 7), (6, 2), (6, 7), (7, 1)\}
 \]</span></p>
+<h4 id="task">Task</h4>
+<p>Can you spot the subtle difference?</p>
+<p>In contrast to undirected graphs, where an edge is written as a <strong>set</strong> of nodes (i.e., the order <strong>doesn’t matter</strong>), in directed graphs, edges are written as <strong>tuples</strong> (the order <strong>does matter</strong>). Thus, an edge <span class="math inline">\((a, b)\)</span> in a directed graph would mean that there is a directed edge <strong>from <span class="math inline">\(a\)</span> to <span class="math inline">\(b\)</span></strong>.</p>
+<h4 id="task-1">Task</h4>
+<p>Try to come up with three more networked systems that could be modeled with directed graphs.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

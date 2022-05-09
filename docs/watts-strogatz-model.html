@@ -2067,6 +2067,18 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <script src="site_libs/webcomponents-2.0.0/webcomponents.js"></script>
   <script src="site_libs/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
+  <script type="text/javascript" src="https://www.cookieconsent.com/releases/3.1.0/cookie-consent.js"></script>
+  <script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function () {
+  cookieconsent.run({
+  'notice_banner_type':'simple',
+  'consent_type': 'express',
+  'palette': 'light',
+  'language': 'en',
+  'website_name': 'basic-graph-theory',
+  'cookies_policy_url': 'url',
+  'change_preferences_selector':'#CookiePreferences'
+  });});</script>
   <!--/radix_placeholder_site_in_header-->
 
 
@@ -2107,7 +2119,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
 <div class="d-article">
-<p>Many naturally-occurring networks have a distinct and peculiar property. Although they can be huge in terms of node count, the average path length between two nodes remains small. <strong>Really</strong> small in some cases.</p>
+<p>Many naturally-occurring networks have a peculiar property. Although they can be huge in terms of node count, the <strong>average path length</strong> between two nodes remains small. <em>Really</em> small in some cases.</p>
 <p>If you take a social network, for instance, there are some famous experiments that show that any two nodes in the network are usually not separated by more than six degrees (the infamous <strong>six degrees of separation</strong>).</p>
 <p>In pop science speak, this means that you are a mere six social connections away from the Queen of England.</p>
 <p>The <a href="./erdos-renyi-model.html">Erdös-Renyi model</a> does not capture this property.</p>
@@ -2115,40 +2127,41 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>The decisive innovation came from Duncan Watts and Steven Strogatz <span class="citation" data-cites="watts1998collective">(<a href="#ref-watts1998collective" role="doc-biblioref">Watts and Strogatz 1998</a>)</span>, hence the name <strong>Watts-Strogatz model</strong> (WS model).</p>
 <p>Start with a regular ring lattice.</p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="watts-strogatz-model_files/figure-html5/unnamed-chunk-1-1.png" width="624" /></p>
+<p><img src="watts-strogatz-model_files/figure-html5/ring-lattice-k4-1.png" width="624" /></p>
 </div>
 <p>This is a regular ring lattice. There are two parameters that you already have to give the WS model to construct this lattice: <span class="math inline">\(N\)</span> is the number of nodes and <span class="math inline">\(k\)</span> is the mean node degree.</p>
 <p>In the case of a regular ring lattice, the mean node degree is assumed to be an even number. In colloquial terms, you construct it by arranging the nodes in a circle and attaching each node to its <span class="math inline">\(\frac{k}{2}\)</span> neighbors on each side. That last one is a mouth full. Let’s look at it in detail.</p>
 <p>Consider the graph above again and look at node 1. It attaches to <span class="math inline">\(2\)</span> and <span class="math inline">\(3\)</span> on one side and to <span class="math inline">\(10\)</span> and <span class="math inline">\(9\)</span> on the other. Node <span class="math inline">\(2\)</span> attaches to <span class="math inline">\(3\)</span> and <span class="math inline">\(4\)</span> on the one side and to <span class="math inline">\(1\)</span> and <span class="math inline">\(10\)</span> on the other. You can check this for every node and see that they all attach to <span class="math inline">\(2\)</span> other nodes on each side. Hence the parameter <span class="math inline">\(k\)</span>, in this case, is <span class="math inline">\(4\)</span>.</p>
 <p>Here is an example with <span class="math inline">\(k = 6\)</span>:</p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="watts-strogatz-model_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
+<p><img src="watts-strogatz-model_files/figure-html5/ring-lattice-k6-1.png" width="624" /></p>
 </div>
 <p>And for good measure, here is a lattice with <span class="math inline">\(k = 2\)</span>:</p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="watts-strogatz-model_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
+<p><img src="watts-strogatz-model_files/figure-html5/ring-lattice-k2-1.png" width="624" /></p>
 </div>
 <p>Let’s return to the first graph:</p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="watts-strogatz-model_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
+<p><img src="watts-strogatz-model_files/figure-html5/ring-lattice-original-1.png" width="624" /></p>
 </div>
 <p>Suppose the above graph is the regular ring lattice you constructed. The WS model algorithm now proceeds as follows:</p>
 <p>First, there is yet another parameter that we need, <span class="math inline">\(\beta\)</span>. Start with node 1 now and go through each edge that attaches to it. Reroute each edge to another node with probability <span class="math inline">\(\beta\)</span>. The node to reroute to is drawn uniformly at random while avoiding self-loops. This means that you put all the other nodes (<em>excluding</em> the node in question, in this case node 1) in a bag and just draw a new node to attach the edge to.</p>
 <p>Here are some samples that were generated by this model:</p>
 <p><span class="math inline">\(\beta = 0.3\)</span>:</p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="watts-strogatz-model_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
+<p><img src="watts-strogatz-model_files/figure-html5/watts-strogatz-30-1.png" width="624" /></p>
 </div>
 <p><span class="math inline">\(\beta = 0.1\)</span></p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="watts-strogatz-model_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
+<p><img src="watts-strogatz-model_files/figure-html5/watts-strogatz-10-1.png" width="624" /></p>
 </div>
 <p><span class="math inline">\(\beta = 0.9\)</span></p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="watts-strogatz-model_files/figure-html5/unnamed-chunk-7-1.png" width="624" /></p>
+<p><img src="watts-strogatz-model_files/figure-html5/watts-strogatz-90-1.png" width="624" /></p>
 </div>
 <h4 id="task">Task</h4>
-<p>Can you guess what happens if you set <span class="math inline">\(\beta = 1\)</span>?</p>
+<p>Can you guess what happens if you set <span class="math inline">\(\beta = 1\)</span>? And what happens if you set <span class="math inline">\(\beta = 0\)</span>? Try to figure these two questions out before you move on.</p>
+<p>As it indicates a probability value (the re-routing probability), there are two extreme cases to the <span class="math inline">\(\beta\)</span> parameter: <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span> If <span class="math inline">\(\beta = 0\)</span>, each edge is rerouted at random with a probability of <span class="math inline">\(0\)</span>, which is - not at all. This means that the resulting graph will just be a <strong>regular ring lattice</strong> with parameter <span class="math inline">\(k\)</span>. If <span class="math inline">\(\beta = 1\)</span>, each edge is rerouted at random with a probability of <span class="math inline">\(1\)</span>, so all edges are rerouted randomly. This is equivalent to an <strong>Erdös-Renyi graph</strong> with <span class="math inline">\(n_{nodes} = n\)</span> and <span class="math inline">\(n_{edges} = |E|\)</span>. TODO: use proper naming This leaves us with a very useful model: One where we can <em>interpolate</em> between a regular ring lattice and a random graph.</p>
 <h4 id="task-1">Task</h4>
 <p>Implement this model in <a href="https://julialang.org/">Julia</a>. (TODO: write basic julia or Graphs.jl tutorial)</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>

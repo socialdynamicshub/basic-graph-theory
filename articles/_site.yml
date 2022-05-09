@@ -9,4 +9,10 @@ navbar:
       href: index.html
     - text: "About"
       href: about.html
+cookie_consent:
+  style: simple
+  type: express
+  palette: light
+  lang: en
+  cookies_policy: url
 output: distill::distill_article

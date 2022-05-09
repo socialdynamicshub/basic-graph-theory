@@ -8,4 +8,5 @@ description: |
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-This is the about page.
+This course about basic graph theory is part of a bigger series on modeling opinion dynamics.
+TODO: LINK

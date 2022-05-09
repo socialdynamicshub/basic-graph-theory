@@ -1,13 +1,14 @@
 ---
 title: "Node Degree"
-# description: |
-#   A new article created using the Distill format.
-date: "`r Sys.Date()`"
 output: distill::distill_article
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+library(igraph)
+library(dplyr)
+library(networkD3)
+set.seed(420)
 ```
 
 
@@ -21,12 +22,16 @@ The number of edges that attach to it.
 
 ```{r}
 g <- erdos.renyi.game(7, 0.6)
-simpleNetwork(as_data_frame(g), charge = -100, nodeColour = "blue")
+g %>% 
+  igraph::as_data_frame() %>% 
+  rename(source = from, target = to) %>% 
+  mutate(source = source - 1, target = target - 1) %>% 
+  simpleNetwork(charge = -100, nodeColour = "blue")
 ```
 
-Look at vertex 1.
-It has `r degree(g, 1)` edges attached to it.
-Vertex 7 has `r degree(g, 7)` edges attached to it.
+Look at vertex 2.
+It has `r degree(g, 3)` edges attached to it.
+Vertex 6 has `r degree(g, 7)` edges attached to it.
 
 We can see that this number differs between vertices.
 In a small graph like this one, these differences seem insignificant, but you will see that they make a huge difference, especially if you look at larger graphs.

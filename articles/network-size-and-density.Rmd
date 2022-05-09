@@ -10,6 +10,7 @@ output: distill::distill_article
 knitr::opts_chunk$set(echo = FALSE)
 library(igraph)
 library(networkD3)
+library(dplyr)
 set.seed(420)
 ```
 
@@ -21,11 +22,17 @@ These two metrics seem inoccuously simple, but they give us everything we need t
 
 Look at these two graphs:
 
-```{r}
-g1 <- erdos.renyi.game(15, 0.1)
+```{r two-example-graphs}
+g1 <- erdos.renyi.game(15, 0.3)
 g2 <- erdos.renyi.game(15, 0.9)
-simpleNetwork(as_data_frame(g1), charge = -100, nodeColour = "blue")
-simpleNetwork(as_data_frame(g2), charge = -100, nodeColour = "blue")
+g1df <- igraph::as_data_frame(g1) %>% 
+  rename(source = from, target = to) %>% 
+  mutate(source = source - 1, target = target - 1)
+g2df <- igraph::as_data_frame(g2) %>% 
+  rename(source = from, target = to) %>% 
+  mutate(source = source - 1, target = target - 1)
+simpleNetwork(g1df, charge = -100, nodeColour = "blue")
+simpleNetwork(g2df, charge = -100, nodeColour = "blue")
 ```
 
 Despite the fact that they both have the same number of nodes, the difference between the two just hits you right between the eyes.
@@ -57,9 +64,11 @@ Calculate the network density of the following graph:
 
 ```{r}
 g <- erdos.renyi.game(10, 0.5)
-simpleNetwork(as_data_frame(g), charge = -100, nodeColour = "blue")
+gdf <- igraph::as_data_frame(g) %>% 
+  rename(source = from, target = to) %>% 
+  mutate(source = source - 1, target = target - 1)
+simpleNetwork(gdf, charge = -100, nodeColour = "blue")
 ```
-
 
 
 
