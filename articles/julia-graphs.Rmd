@@ -64,14 +64,14 @@ add_edge!(g, 4, 5)
 ```
 
 
-This first simple snippet of julia code already tells us a lot.
-First, incidentally, this is how we usually set up a julia workflow in a script.
+This first simple snippet of Julia code already tells us a lot.
+First, incidentally, this is how we usually set up a Julia workflow in a script.
 You load the libraries at the top of the script and then move on to perform the task that the script is supposed to perform.
 In this case, we first constructed an empty undirected graph with 5 nodes (`g = SimpleGraph(5)`).
 Empty in this case means that the graph has no edges.
 
 Then we proceeded to add six edges to the graph (e.g., `add_edge!(g, 1, 2)` for "add an edge to `g` from node `1` to node `2`").
-The `!` is a julia convention for functions that **manipulate an object in-place**.
+The `!` is a Julia convention for functions that **manipulate an object in-place**.
 It is important to keep this in mind.
 Here, it means that by simply calling the function, we modify the object `g` without having to assign it again.
 

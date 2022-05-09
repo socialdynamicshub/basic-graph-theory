@@ -9,6 +9,7 @@ library(igraph)
 set.seed(420)
 ```
 
+
 Across virtually all scientific domains, there are phenomena that can be described as **networks**.
 Things in nature just seem to like to connect.
 
@@ -22,7 +23,6 @@ Can we find people that are very well connected?
 Can we identify cohesive communities in the network?
 Are there people who link two communities together?
 All these questions and many more can be addressed in a graph theoretic approach.
-
 
 **The electrical grid**
 
@@ -43,13 +43,7 @@ Are certain areas at a higher risk to experience congestions?
 How could building a new road aleviate traffic in an area that has a school?
 
 
-**The brain**
-
-[GRAPHIC OF NETWORK OF NEURONS]
-
-
 There are literally countless more examples of what you could describe as a network.
-
 
 
 #### Task
@@ -62,17 +56,13 @@ So how would we model and analyze the examples above?
 That's a question that we could decide *ad hoc* whenever we encounter the problem at hand.
 Luckily, we don't have to.
 We can abstract away the essential structure of each of those and use a massive body of tools, metrics, and techniques that have been developed over centuries.
-That's where **graphs** come into play.
+That's where **graph theory** come into play.
 
 
 [GRAPHIC OF ABSTRACTION PROCESS]
 
 
-
-
-
-
-Graphs are very versatile models of almost any kind relationship.
+Graphs are very versatile models for almost any kind relationship.
 They are "things" and how these "things" are connected to one another.
 
 There are a lot of upsides to modeling relationships with graphs.
@@ -81,3 +71,4 @@ No matter the domain that we are modeling, we can profit from a large toolbox of
 
 
 There are a lot more specifications of graphs that can be used for more specific problems (for instance, what happens if the relationships, i.e., the edges, are **directed**, or what if we differentiate between the importance of edges and attach a *weight* to them?).
+
