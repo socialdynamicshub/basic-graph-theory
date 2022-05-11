@@ -1,0 +1,61 @@
+---
+title: "Paths, Walks, and Trails"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(igraph)
+set.seed(420)
+```
+
+
+Sometimes (in fact, many times), it is important to know how to get from a node $A$ to another node $B$ in a network.
+To accurately describe how we get from nodes to other nodes or how we move through a network, we need a concise vocabulary to describe movements and trajectories.
+This is where **paths** and **walks** come into play.
+
+Let's say we have the following network:
+
+```{r}
+g <- erdos.renyi.game(10, 0.5)
+plot(g, vertex.size = 25)
+```
+
+
+Now, we just put an agent on node $8$.
+Let's just move it from $8$ to $5$, then to $9$, then to $4$ and back to $5$.
+
+To fully describe this movement, we can write down the **sequence of edges** that we just traversed:
+
+$$
+(\{8, 5\}, \{5, 9\}, \{9, 4\}, \{4, 5\})
+$$
+
+What we just performed is a **walk**.
+It seems almost trivial, but we did several things implicitly that are important in defining a walk.
+
+First of all, not any arbitrary sequence of edges is a walk.
+For instance, this:
+
+$$
+(\{4, 8\}, \{8, 7\}, \{7, 6\}, \{1, 10\})
+$$
+
+... is not a walk.
+The necessary condition for a sequence of edges to constitute a walk is that the edges in the edge sequence need to "string together" a sequence of vertices.
+If you look into the first example, the node that we arrive at from one edge is always the starting point in the next edge.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
