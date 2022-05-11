@@ -87,30 +87,26 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-  <title>Basic Graph Theory</title>
-
-  <meta property="description" itemprop="description" content="A brief introduction to graph and network theory"/>
+  <title>Basic Graph Theory: Paths, Walks, and Trails</title>
 
 
-  <meta name="article:author" content="Johannes Nakayama"/>
+
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Basic Graph Theory"/>
+  <meta property="og:title" content="Basic Graph Theory: Paths, Walks, and Trails"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="A brief introduction to graph and network theory"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Basic Graph Theory"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Basic Graph Theory"/>
-  <meta property="twitter:description" content="A brief introduction to graph and network theory"/>
+  <meta property="twitter:title" content="Basic Graph Theory: Paths, Walks, and Trails"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","site"]}},"value":[{"type":"character","attributes":{},"value":["Basic Graph Theory"]},{"type":"character","attributes":{},"value":["A brief introduction to graph and network theory\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Johannes Nakayama"]},{"type":"character","attributes":{},"value":["https://example.com/"]},{"type":"character","attributes":{},"value":["example affiliation"]},{"type":"character","attributes":{},"value":["https://example.com"]}]}]},{"type":"character","attributes":{},"value":["distill::distill_website"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","output"]}},"value":[{"type":"character","attributes":{},"value":["Paths, Walks, and Trails"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2070,7 +2066,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Basic Graph Theory","description":"A brief introduction to graph and network theory","authors":[{"author":"Johannes Nakayama","authorURL":"https://example.com/","affiliation":"example affiliation","affiliationURL":"https://example.com","orcidID":""}]}
+{"title":"Paths, Walks, and Trails","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2092,33 +2088,53 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Basic Graph Theory</h1>
+<h1>Paths, Walks, and Trails</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>A brief introduction to graph and network theory</p></p>
-</div>
-
-<div class="d-byline">
-  Johannes Nakayama <a href="https://example.com/" class="uri">https://example.com/</a> (example affiliation)<a href="https://example.com" class="uri">https://example.com</a>
-  
 
 </div>
+
 
 <div class="d-article">
-<ul>
-<li><p><a href="./why-graphs.html">Why graphs?</a></p></li>
-<li><p><a href="./what-is-a-graph.html">What is a graph?</a></p></li>
-<li><p><a href="./talking-about-graphs.html">Talking about graphs</a></p></li>
-<li><p><a href="./network-size-and-density.html">Network size and density</a></p></li>
-<li><p><a href="./node-degree.html">Node degree</a></p></li>
-<li><p><a href="./paths-walks-trails.html">Paths, walks, and trails</a></p></li>
-<li><p><a href="./average-path-length.html">Average path length</a></p></li>
-<li><p><a href="./directed-graphs.html">Directed graphs</a></p></li>
-<li><p><a href="./erdos-renyi-model.html">The Erdos-Renyi model</a></p></li>
-<li><p><a href="./watts-strogatz-model.html">The Watts-Strogatz model</a></p></li>
-<li><p><a href="./barabasi-albert-model.html">The Barabasi-Albert model</a></p></li>
-<li><p><a href="./julia-graphs.html">Graphs.jl</a></p></li>
-</ul>
+<p>Sometimes (in fact, many times), it is important to know how to get from a node <span class="math inline">\(A\)</span> to another node <span class="math inline">\(B\)</span> in a network. To accurately describe how we get from nodes to other nodes or how we move through a network, we need a concise vocabulary to describe movements and trajectories. This is where <strong>paths</strong> and <strong>walks</strong> come into play.</p>
+<h3 id="walks">Walks</h3>
+<p>Let’s say we have the following network:</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="paths-walks-trails_files/figure-html5/unnamed-chunk-1-1.png" width="624" /></p>
+</div>
+<p>Now, we just put an agent on node <span class="math inline">\(8\)</span>. Let’s just move it from <span class="math inline">\(8\)</span> to <span class="math inline">\(5\)</span>, then to <span class="math inline">\(9\)</span>, then to <span class="math inline">\(4\)</span> and back to <span class="math inline">\(5\)</span>.</p>
+<p>To fully describe this movement, we can write down the <strong>sequence of edges</strong> that we just traversed:</p>
+<p><span class="math display">\[
+(\{8, 5\}, \{5, 9\}, \{9, 4\}, \{4, 5\})
+\]</span></p>
+<p>What we just performed is a <strong>walk</strong>. It seems almost trivial, but we did several things implicitly that are important in defining a walk.</p>
+<p>First of all, not any arbitrary sequence of edges is a walk. For instance, this:</p>
+<p><span class="math display">\[
+(\{4, 8\}, \{8, 7\}, \{7, 6\}, \{1, 10\})
+\]</span></p>
+<p>… is not a walk. The necessary condition for a sequence of edges to constitute a walk is that the edges in the edge sequence need to “string together” a sequence of vertices. If you look into the first example, the node that we arrive at from one edge is always the starting point in the next edge.</p>
+<h3 id="trails">Trails</h3>
+<p>A trail is a special kind of walk, where <strong>all edges in the walk are distinct</strong>. If you look at the previous walk, you can see that it is also a trail because no edge is traversed more than once.</p>
+<p><span class="math display">\[
+(\{8, 5\}, \{5, 9\}, \{9, 4\}, \{4, 5\})
+\]</span></p>
+<p>A counter example would be:</p>
+<p><span class="math display">\[
+(\{8, 5\}, \{5, 9\}, \{9, 8\}, \{8, 5\})
+\]</span></p>
+<p>Here, we traverse the edge <span class="math inline">\(\{8, 5\}\)</span> twice.</p>
+<h3 id="paths">Paths</h3>
+<p>Lastly, paths are a special case of trails. A path is a trail where <strong>no node is visited more than once</strong>. As you can clearly see, none of the examples above are paths. In this example:</p>
+<p><span class="math display">\[
+(\{8, 5\}, \{5, 9\}, \{9, 4\}, \{4, 5\})
+\]</span></p>
+<p>… we visit node 5 twice (once after the first step, and once after the last).</p>
+<p>This, in contrast, is an example for a path:</p>
+<p><span class="math display">\[
+(\{8, 5\}, \{5, 9\}, \{9, 4\}, \{4, 2\})
+\]</span></p>
+<p>We are moving to a new node in every step.</p>
+<p>These are just rough definitions to give you an idea of what each of these concepts is about. For this course, it is not necessary to be familiar with the details and more concise mathematical formalities. However, we would highly encourage you to develop a deeper mathematical understanding on the basis of the rough ideas you get from this course. When modeling complex social systems, it is often very useful to have a strong knowledge and deep understanding of the mathematical underpinnings of the structures that you use.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
@@ -2127,6 +2143,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="d-appendix">
 </div>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->

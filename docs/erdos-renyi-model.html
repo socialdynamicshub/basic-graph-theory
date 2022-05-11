@@ -92,8 +92,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2022-05-09"/>
-  <meta property="article:created" itemprop="dateCreated" content="2022-05-09"/>
+  <meta property="article:published" itemprop="datePublished" content="2022-05-11"/>
+  <meta property="article:created" itemprop="dateCreated" content="2022-05-11"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="Basic Graph Theory: The Erdös-Renyi Model"/>
@@ -109,7 +109,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","date","output"]}},"value":[{"type":"character","attributes":{},"value":["The Erdös-Renyi Model"]},{"type":"character","attributes":{},"value":["2022-05-09"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","date","output"]}},"value":[{"type":"character","attributes":{},"value":["The Erdös-Renyi Model"]},{"type":"character","attributes":{},"value":["2022-05-11"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2069,7 +2069,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"The Erdös-Renyi Model","authors":[],"publishedDate":"2022-05-09T00:00:00.000+02:00"}
+{"title":"The Erdös-Renyi Model","authors":[],"publishedDate":"2022-05-11T00:00:00.000+02:00"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2099,10 +2099,42 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
 <div class="d-article">
-<p>The Erdös-Renyi (ER) model is a random graph model. Sometimes, we are not interested in a particular graph, but rather a class of graphs.</p>
-<p>If you had to come up with a random way of creating a graph, how would you do it?</p>
-<p>Erdös and Renyi asked themselves the same thing. They came up with a model that is now known as the ER model.</p>
-<p>Start with a fixed number of nodes. Now take each pair of nodes and add an edge between them with probability <span class="math inline">\(p\)</span>.</p>
+<p>Perhaps, so far, you have mostly seen concrete instances of graphs. But often in graph and network theory, we want to look at graphs in a more general way, that is, as representatives of a larger class of graphs. This is why we often deal with <strong>random graphs</strong>.</p>
+<p>But what is a random graph? How would you come up with a random way of creating a graph? How would you define a class of generic graphs of which a concrete graph is an instantiation?</p>
+<p>The mathematicians Paul Erdös (1913-1996) and Alfred Renyi (1921-1970) came up with a model that is now known as the <strong>Erdos-Renyi model</strong>. It provides a way of framing a class of graphs as a random variable where each concrete example is associated with a probability.</p>
+<p>In the ER model, we start with a fixed number of nodes <span class="math inline">\(n\)</span>. In a complete graph of this size, there are <span class="math inline">\(n(n-1)\)</span> edges.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="erdos-renyi-model_files/figure-html5/unnamed-chunk-1-1.png" width="624" /></p>
+</div>
+<p>Apart from a fixed node count, we have a fixed edge count of <span class="math inline">\(m\)</span>. An ER graph is just a representative of this class, where each edge has the same probability of being present.</p>
+<p>To construct an Erdos-Renyi graph, randomly draw <span class="math inline">\(m\)</span> edges without replacement from the set of all possible edges in a graph of <span class="math inline">\(n\)</span> nodes.</p>
+<p>The model as a whole is written as <span class="math inline">\(G(n, m)\)</span>.</p>
+<p>Here are some random draws from <span class="math inline">\(G(10, 3)\)</span>:</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="erdos-renyi-model_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="erdos-renyi-model_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="erdos-renyi-model_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
+</div>
+<h3 id="the-erdos-renyi-gilbert-model">The Erdos-Renyi-Gilbert Model</h3>
+<p>There is a slight variation on this model by Edgar Gilbert (1923-2013). Instead of fixing the exact number of edges <span class="math inline">\(m\)</span>, we define a probability <span class="math inline">\(p\)</span> which indicates the probability for the presence of each edge.</p>
+<p>This means that when constructing an instance of this class of graphs, we iterate over all possible edges in a graph of node count <span class="math inline">\(n\)</span> and add each edge with probability <span class="math inline">\(p\)</span>.</p>
+<p>The way to write this model formally is <span class="math inline">\(G(n, p)\)</span>.</p>
+<p>Here are three examples of <span class="math inline">\(G(10, 0.033)\)</span></p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="erdos-renyi-model_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="erdos-renyi-model_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="erdos-renyi-model_files/figure-html5/unnamed-chunk-7-1.png" width="624" /></p>
+</div>
+<p>As you can easily see, the classes <span class="math inline">\(G(n, m)\)</span> and <span class="math inline">\(G(n, p)\)</span> are not equivalent. Technically, the complete graph <span class="math inline">\(G(N, E)\)</span> with <span class="math inline">\(|N| = n\)</span> and <span class="math inline">\(|E| = n(n-1)\)</span> is a representative of <span class="math inline">\(G(10, 0.033)\)</span> because it is theoretically possible to draw each edge. It is just highly unlikely. Conversely, the complete graph is obviously not part of <span class="math inline">\(G(10, 3)\)</span> because it does not have <span class="math inline">\(3\)</span>, but <span class="math inline">\(10 \cdot 9 = 90\)</span> edges.</p>
+<h3 id="what-can-we-use-this-model-for">What can we use this model for?</h3>
 <p>There are several things to note about this model.</p>
 <p>First of all, what could you say about the <em>density</em> of that graph? If you create a sufficient number of random graphs this way, the average network density will be very close to <span class="math inline">\(p\)</span>.</p>
 <p>There is another way of setting up the model. Start with a fixed number of nodes. Now take a fixed number of edges smaller or equal the number of possible edges. Put a random edge into the network until you have as many edges as you chose.</p>

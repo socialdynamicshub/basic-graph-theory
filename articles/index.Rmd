@@ -22,6 +22,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 * [Network size and density](./network-size-and-density.html)
 * [Node degree](./node-degree.html)
+* [Paths, walks, and trails](./paths-walks-trails.html)
 * [Average path length](./average-path-length.html)
 
 * [Directed graphs](./directed-graphs.html)
