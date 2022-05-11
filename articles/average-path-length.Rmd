@@ -29,7 +29,7 @@ Let's see this in an example.
 
 ```{r}
 erdos.renyi.game(5, 0.5) %>% 
-  plot(vertex.size = 25)
+  plot(vertex.size = 25, vertex.color = "black", vertex.label.color = "white")
 ```
 
 
@@ -85,9 +85,9 @@ Putting all of the above together in a concise formula, we get:
 
 $$
 G = (N, E)\\
-\overline{P_{min}(G)} = \frac{\sum_{i, j \in N, i \neq j}{d(i, j)}}{{|N|\choose 2}}
+\overline{P_{min}(G)} = \frac{\sum_{i, j \in N, i \neq j}{d(i, j)}}{{n\choose 2}}
 $$
-... where $N$ is the set of nodes, $|N|$ is the number of nodes in the graph and $d(i, j)$ is the distance (i.e., the length of the shortest path) between nodes $i$ and $j$.
+... where $n$ is the number of nodes in the graph and $d(i, j)$ is the distance (i.e., the **length of the shortest path**) between nodes $i$ and $j$.
 
 The average path length is implemented in graph libraries in many programming languages.
 For instance, this is how you compute it in Python with the `networkx` package:
@@ -112,22 +112,22 @@ First of all, a path from $A$ to $B$ in a directed graph is **not** equivalent t
 Consider the following example:
 
 ```{r}
-g <- graph_from_literal(A --+ X, X --+ Y, Y --+ Z, Z --+ B)
-plot(g, vertex.size = 25)
+graph_from_literal(
+  A --+ X,
+  X --+ Y,
+  Y --+ Z,
+  Z --+ B
+) %>% 
+  plot(vertex.size = 25, vertex.color = "black", vertex.label.color = "white")
 ```
 
 In this example, there is a path from $A$ to $B$, but there isn't one in the opposite direction.
 If there isn't a way to reach a node $B$ from a node $A$ by only traversing directed edges in the direction of the edge, $B$ is *unreachable* from $A$.
-We define $d(i, j)$ if $j$ is unreachable from $i$ as $d(i, j) = 0$.
-TODO: figure out whether 0 or infinity (contradictory definitions online; infinity makes more sense?)
+We define $d(i, j) = \infty$ if $j$ is unreachable from $i$.
 
 
+### Average Path Length in Weighted Graphs
 
-
-
-[ELABORATE]
--> digraphs?
--> weighted graphs?
 
 
 
