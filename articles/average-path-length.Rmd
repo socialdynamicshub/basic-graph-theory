@@ -7,8 +7,20 @@ output: distill::distill_article
 knitr::opts_chunk$set(echo = FALSE)
 library(igraph)
 library(dplyr)
+
+# Setup python environment:
+#  * the directory contains a Pipfile
+#  * run: pipenv install
+#  * then paste the path to your python environment below
+py_path <- "/home/johannes/.local/share/virtualenvs/articles-5D7P_X21/bin/python"
+library(reticulate)
+use_python(py_path)
+
+# Set random seed for reproducibility
 set.seed(420)
 ```
+
+[ADD RATIONALE FOR WHY THIS METRIC MATTERS]
 
 The **average path length** of a network is the average length of the *shortest path* between any two nodes in the network.
 To compute the average path length, we first find the shortest path between all pairs of two nodes and then simply compute the arithmetic mean of these paths.
@@ -69,10 +81,53 @@ $$
 \overline{P_{min}} = \frac{3 + 1 + 2 + 1 + 3 + 1 + 2 + 2 + 1 + 1}{10} = \frac{16}{10} = 1.6
 $$
 
+Putting all of the above together in a concise formula, we get:
+
+$$
+G = (N, E)\\
+\overline{P_{min}(G)} = \frac{\sum_{i, j \in N, i \neq j}{d(i, j)}}{{|N|\choose 2}}
+$$
+... where $N$ is the set of nodes, $|N|$ is the number of nodes in the graph and $d(i, j)$ is the distance (i.e., the length of the shortest path) between nodes $i$ and $j$.
+
+The average path length is implemented in graph libraries in many programming languages.
+For instance, this is how you compute it in Python with the `networkx` package:
+
+```{python average-path-length-networkx, echo=TRUE}
+import networkx as nx
+g = nx.watts_strogatz_graph(10, 2, 0.4, seed=42)
+print("Average shortest path length of g: ", nx.average_shortest_path_length(g))
+```
+
+
+
+### Average Path Length in Directed Graphs
+
+We began with undirected graphs as that is the simplest way of understanding what average path length is all about.
+However, the definition above *only* applies to undirected graphs.
+There is a more generic one that extends to **directed graphs** as well.
+
+Paths between two nodes are defined differently in directed graphs.
+First of all, a path from $A$ to $B$ in a directed graph is **not** equivalent to a path from $B$ to $A$.
+
+Consider the following example:
+
+```{r}
+g <- graph_from_literal(A --+ X, X --+ Y, Y --+ Z, Z --+ B)
+plot(g, vertex.size = 25)
+```
+
+In this example, there is a path from $A$ to $B$, but there isn't one in the opposite direction.
+If there isn't a way to reach a node $B$ from a node $A$ by only traversing directed edges in the direction of the edge, $B$ is *unreachable* from $A$.
+We define $d(i, j)$ if $j$ is unreachable from $i$ as $d(i, j) = 0$.
+TODO: figure out whether 0 or infinity (contradictory definitions online; infinity makes more sense?)
+
+
+
+
+
 [ELABORATE]
 -> digraphs?
 -> weighted graphs?
--> never need to do by hand because of computers
 
 
 
