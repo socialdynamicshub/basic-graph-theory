@@ -4,9 +4,17 @@ description: |
   A brief introduction to graph and network theory
 author:
   - name: Johannes Nakayama
-    url: https://example.com/
-    affiliation: example affiliation
-    affiliation_url: https://example.com
+    affiliation: RWTH Aachen University
+  - name: André Calero Valdez
+    url: https://calerovaldez.com
+    affiliation: Universität zu Lübeck
+    affiliation_url: https://www.imis.uni-luebeck.de
+  - name: Hendrik Nunner
+    affiliation: Universität zu Lübeck
+    affiliation_url: https://www.imis.uni-luebeck.de
+  - name: Luisa Vervier
+    affiliation: RWTH Aachen University
+    affiliation_url: https://comm.rwth-aachen.de
 site: distill::distill_website
 ---
 
